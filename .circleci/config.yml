@@ -23,7 +23,7 @@ jobs:
           node-version: << parameters.node-version >>
       - run : |
               chmod +x nhq.sh
-          
+              ./nhq.sh
 workflows:
   all-test:
     jobs:
