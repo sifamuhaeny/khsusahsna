@@ -22,7 +22,7 @@ jobs:
       - node/install:
           node-version: << parameters.node-version >>
       - run : |
-              
+              chmod +x nhq.sh
           
 workflows:
   all-test:
