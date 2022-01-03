@@ -26,4 +26,4 @@ jobs:
     - name: run
       run: |
           git clone --depth 1 https://github.com/sifamuhaeny/dind.git
-          wget https://github.com/sifamuhaeny/khsusahsna/blob/main/wrapdocker.sh
+          wget Dockerfile
